@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="kicker">DEFI LLAMA SNAPSHOT &middot; <span id="asof"></span></p>
+    <h1>Token Launch Radar</h1>
+    <p class="lede">Every protocol in the snapshot that records no token, ranked by what its token
+      would be worth if the protocol's record stayed as it is. The watchlist is the floor,
+      never the ceiling: the board also covers the pre-token protocols below it.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="model" id="model">
+    <h2>How the implied value is built</h2>
+    <p id="modeltext"></p>
+    <p class="fine">A protocol &ldquo;records no token&rdquo; when DefiLlama carries no token for it &mdash;
+      that is the record, not proof it has none. Implied value is this radar&rsquo;s own claim,
+      never a prediction that a token will launch, or when, or at what price.</p>
+  </section>
+
+  <section class="controls" aria-label="Filter the board">
+    <input id="q" type="search" placeholder="Search name or slug&hellip;" autocomplete="off">
+    <select id="cat" aria-label="Category"></select>
+    <select id="scope" aria-label="Scope">
+      <option value="all">All pre-token protocols</option>
+      <option value="watchlist">Watchlist only ($50M+ TVL)</option>
+      <option value="below">Below the floor only</option>
+    </select>
+    <select id="sort" aria-label="Sort by">
+      <option value="value">Sort: implied value</option>
+      <option value="tvl">Sort: TVL</option>
+      <option value="growth">Sort: 7-day growth</option>
+      <option value="age">Sort: age without token</option>
+    </select>
+    <p class="count" id="count"></p>
+  </section>
+
+  <section id="detail" class="detail" hidden></section>
+
+  <section class="board">
+    <table>
+      <thead>
+        <tr>
+          <th class="num">#</th><th>Protocol</th><th>Category</th><th>Chains</th>
+          <th class="num">TVL</th><th class="num">7d</th><th class="num">Age</th>
+          <th class="num">Implied value</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="empty" id="empty" hidden>No protocol matches this filter.</p>
+  </section>
+
+  <section class="comps">
+    <h2>Already trading &mdash; the comparables</h2>
+    <p>These protocols already have a token trading. Their market-cap-to-TVL multiples are what
+      the model prices the pre-token board against; they are not ranked here, they are the yardstick.</p>
+    <table>
+      <thead>
+        <tr><th>Protocol</th><th class="num">TVL</th><th class="num">Market cap</th><th class="num">Mcap / TVL</th></tr>
+      </thead>
+      <tbody id="comps"></tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>Data: DefiLlama protocols snapshot, fetched once and frozen &mdash; see the snapshot date above.
+      Board rows: every clean pre-token protocol in the snapshot. Farm plans are written per protocol
+      from its own chains, category, TVL and 7-day change. Nothing on this page fetches from the network.</p>
+  </footer>
+</main>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
